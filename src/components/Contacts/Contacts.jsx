@@ -1,19 +1,10 @@
 import PropTypes from 'prop-types';
-import { Button } from './Contacts.styled';
+import { ContactItem } from 'components/ContactItem/ContactItem';
 
 export const Contacts = ({ contacts, onDelite }) => {
   return (
     <ul>
-      {contacts.map(({ id, name, number }) => {
-        return (
-          <li key={id}>
-            {name} : {number}
-            <Button type="button" onClick={() => onDelite(id)}>
-              Delite
-            </Button>
-          </li>
-        );
-      })}
+      <ContactItem contacts={contacts} onDelite={onDelite} />
     </ul>
   );
 };
