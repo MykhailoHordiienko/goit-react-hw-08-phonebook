@@ -4,7 +4,17 @@ import { ContactItem } from 'components/ContactItem/ContactItem';
 export const Contacts = ({ contacts, onDelite }) => {
   return (
     <ul>
-      <ContactItem contacts={contacts} onDelite={onDelite} />
+      {contacts.map(({ id, name, number }) => {
+        return (
+          <ContactItem
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDelite={onDelite}
+          />
+        );
+      })}
     </ul>
   );
 };
