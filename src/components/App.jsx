@@ -10,6 +10,15 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    if (localStorage.length > 0) {
+      const savedContacts = localStorage.getItem('contacts');
+      const parsContacts = JSON.parse(savedContacts);
+      console.log(JSON.parse(savedContacts));
+      this.setState({ contacts: parsContacts });
+    }
+  }
+
   onHandleSubmit = (e, { resetForm }) => {
     const contactName = [];
 
@@ -23,6 +32,10 @@ export class App extends Component {
     }
     const user = { ...e, id: nanoid() };
     this.setState(prevState => {
+      localStorage.setItem(
+        'contacts',
+        JSON.stringify([user, ...prevState.contacts])
+      );
       return { contacts: [user, ...prevState.contacts] };
     });
     resetForm();
@@ -42,6 +55,10 @@ export class App extends Component {
 
   deliteContact = id => {
     this.setState(prevState => {
+      localStorage.setItem(
+        'contacts',
+        JSON.stringify(prevState.contacts.filter(contact => contact.id !== id))
+      );
       return {
         contacts: prevState.contacts.filter(contact => contact.id !== id),
       };

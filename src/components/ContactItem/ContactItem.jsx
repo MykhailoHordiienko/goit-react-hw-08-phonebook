@@ -4,14 +4,12 @@ import { Button } from './ContactItem.styled';
 
 export const ContactItem = ({ id, name, number, onDelite }) => {
   return (
-    <>
-      <li>
-        {name} : {number}
-        <Button type="button" onClick={() => onDelite(id)}>
-          Delite
-        </Button>
-      </li>
-    </>
+    <li>
+      {name} : {number}
+      <Button type="button" onClick={() => onDelite(id)}>
+        Delite
+      </Button>
+    </li>
   );
 };
 
