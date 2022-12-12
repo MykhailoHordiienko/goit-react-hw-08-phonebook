@@ -14,9 +14,12 @@ export class App extends Component {
     if (localStorage.length > 0) {
       const savedContacts = localStorage.getItem('contacts');
       const parsContacts = JSON.parse(savedContacts);
-      console.log(JSON.parse(savedContacts));
       this.setState({ contacts: parsContacts });
     }
+  }
+
+  setLocalStorage(item) {
+    localStorage.setItem('contacts', JSON.stringify(item));
   }
 
   onHandleSubmit = (e, { resetForm }) => {
@@ -32,11 +35,9 @@ export class App extends Component {
     }
     const user = { ...e, id: nanoid() };
     this.setState(prevState => {
-      localStorage.setItem(
-        'contacts',
-        JSON.stringify([user, ...prevState.contacts])
-      );
-      return { contacts: [user, ...prevState.contacts] };
+      const { contacts } = prevState;
+      this.setLocalStorage([user, ...contacts]);
+      return { contacts: [user, ...contacts] };
     });
     resetForm();
   };
@@ -46,8 +47,8 @@ export class App extends Component {
   };
 
   getVisibleContacts = () => {
-    const { contacts } = this.state;
-    const normalizedFilter = this.state.filter.toLowerCase();
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
@@ -55,12 +56,12 @@ export class App extends Component {
 
   deliteContact = id => {
     this.setState(prevState => {
-      localStorage.setItem(
-        'contacts',
-        JSON.stringify(prevState.contacts.filter(contact => contact.id !== id))
+      const filteredState = prevState.contacts.filter(
+        contact => contact.id !== id
       );
+      this.setLocalStorage(filteredState);
       return {
-        contacts: prevState.contacts.filter(contact => contact.id !== id),
+        contacts: filteredState,
       };
     });
   };
