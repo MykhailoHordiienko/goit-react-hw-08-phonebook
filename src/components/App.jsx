@@ -22,6 +22,11 @@ export class App extends Component {
     localStorage.setItem('contacts', JSON.stringify(item));
   }
 
+  componentDidUpdate() {
+    const { contacts } = this.state;
+    this.setLocalStorage([...contacts]);
+  }
+
   onHandleSubmit = (e, { resetForm }) => {
     const contactName = [];
 
@@ -36,7 +41,6 @@ export class App extends Component {
     const user = { ...e, id: nanoid() };
     this.setState(prevState => {
       const { contacts } = prevState;
-      this.setLocalStorage([user, ...contacts]);
       return { contacts: [user, ...contacts] };
     });
     resetForm();
