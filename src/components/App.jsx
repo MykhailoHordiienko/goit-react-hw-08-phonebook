@@ -1,36 +1,33 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { Contacts } from './Contacts/Contacts';
 import { FormFild } from './FormFild/FormFild';
 import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
 
-export class App extends Component {
-  state = {
-    contacts: [],
-    filter: '',
-  };
+export const App = () => {
+  const [contacts, setContacts] = useState([]);
+  const [filter, setFilter] = useState('');
 
-  componentDidMount() {
+  useEffect(() => {
     if (localStorage.contacts !== null && localStorage.contacts !== undefined) {
       const savedContacts = localStorage.getItem('contacts');
       const parsContacts = JSON.parse(savedContacts);
-      this.setState({ contacts: parsContacts });
+      setContacts(prev => [...prev, ...parsContacts]);
     }
-  }
+  }, []);
 
-  setLocalStorage(item) {
+  useEffect(() => {
+    setLocalStorage([...contacts]);
+  }, [contacts]);
+
+  const setLocalStorage = item => {
     localStorage.setItem('contacts', JSON.stringify(item));
-  }
+  };
 
-  componentDidUpdate() {
-    const { contacts } = this.state;
-    this.setLocalStorage([...contacts]);
-  }
-
-  onHandleSubmit = (e, { resetForm }) => {
+  const onHandleSubmit = (e, { resetForm }) => {
     const contactName = [];
 
-    for (const contact of this.state.contacts) {
+    for (const contact of contacts) {
       contactName.push(contact.name.toLowerCase());
     }
 
@@ -39,62 +36,50 @@ export class App extends Component {
       return;
     }
     const user = { ...e, id: nanoid() };
-    this.setState(prevState => {
-      const { contacts } = prevState;
-      return { contacts: [user, ...contacts] };
-    });
+    setContacts(prev => [user, ...prev]);
     resetForm();
   };
 
-  changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
+  const changeFilter = e => {
+    setFilter(e.currentTarget.value);
   };
 
-  getVisibleContacts = () => {
-    const { contacts, filter } = this.state;
+  const getVisibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
-  deliteContact = id => {
-    this.setState(prevState => {
-      const filteredState = prevState.contacts.filter(
-        contact => contact.id !== id
-      );
-      this.setLocalStorage(filteredState);
-      return {
-        contacts: filteredState,
-      };
+  const deliteContact = id => {
+    setContacts(prev => {
+      const filteredState = prev.filter(contact => contact.id !== id);
+      setLocalStorage(filteredState);
+      return filteredState;
     });
   };
 
-  render() {
-    const { onHandleSubmit, changeFilter, deliteContact } = this;
-    const { contacts, filter } = this.state;
-    const visiblContacts = this.getVisibleContacts();
+  const visiblContacts = getVisibleContacts();
 
-    return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
-        <h2>Phonebook</h2>
-        <FormFild onSubmit={onHandleSubmit} />
-        <h4>Contacts</h4>
-        <Filter value={filter} onChange={changeFilter} />
-        {contacts.length > 0 && (
-          <Contacts contacts={visiblContacts} onDelite={deliteContact} />
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      style={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontSize: 40,
+        color: '#010101',
+      }}
+    >
+      <h2>Phonebook</h2>
+      <FormFild onSubmit={onHandleSubmit} />
+      <h4>Contacts</h4>
+      <Filter value={filter} onChange={changeFilter} />
+      {contacts.length > 0 && (
+        <Contacts contacts={visiblContacts} onDelite={deliteContact} />
+      )}
+    </div>
+  );
+};
