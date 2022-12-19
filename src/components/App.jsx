@@ -9,9 +9,9 @@ export const App = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    if (localStorage.contacts !== null && localStorage.contacts !== undefined) {
-      const savedContacts = localStorage.getItem('contacts');
-      const parsContacts = JSON.parse(savedContacts);
+    const savedContacts = localStorage.getItem('contacts');
+    const parsContacts = JSON.parse(savedContacts);
+    if (parsContacts) {
       setContacts(prev => [...prev, ...parsContacts]);
     }
   }, []);
