@@ -1,70 +1,49 @@
-import { useState, useEffect } from 'react';
 import { Contacts } from './Contacts/Contacts';
 import { FormFild } from './FormFild/FormFild';
 import { nanoid } from 'nanoid';
+import toast, { Toaster } from 'react-hot-toast';
 import { Filter } from './Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, deliteUserContact } from 'Redux/contactsSlice';
 import { addFilter } from 'Redux/filterSlice';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
-
+  const userList = useSelector(state => state.contacts.contacts);
+  const userFilter = useSelector(state => state.filter);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const savedContacts = localStorage.getItem('contacts');
-    const parsContacts = JSON.parse(savedContacts);
-    if (parsContacts) {
-      setContacts(prev => [...prev, ...parsContacts]);
-    }
-  }, []);
-
-  useEffect(() => {
-    setLocalStorage([...contacts]);
-  }, [contacts]);
-
-  const setLocalStorage = item => {
-    localStorage.setItem('contacts', JSON.stringify(item));
-  };
 
   const onHandleSubmit = (e, { resetForm }) => {
     const contactName = [];
 
-    for (const contact of contacts) {
+    for (const contact of userList) {
       contactName.push(contact.name.toLowerCase());
     }
 
     if (contactName.includes(e.name.toLowerCase())) {
-      alert(`${e.name} is already in contacts list`);
+      toast(`😱 ${e.name} already in contacts list`);
       return;
     }
     const user = { ...e, id: nanoid() };
-    setContacts(prev => [user, ...prev]);
-    dispatch(addContact(user)); // add to redux
+    dispatch(addContact(user));
+    toast(`✅ ${e.name} added`);
     resetForm();
   };
 
   const changeFilter = e => {
-    setFilter(e.currentTarget.value);
-    dispatch(addFilter(e.currentTarget.value)); // add filter
+    dispatch(addFilter(e.currentTarget.value));
   };
 
   const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
+    const normalizedFilter = userFilter.toLowerCase();
+    return userList.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
   const deliteContact = id => {
-    setContacts(prev => {
-      const filteredState = prev.filter(contact => contact.id !== id);
-      setLocalStorage(filteredState);
-      return filteredState;
-    });
-    dispatch(deliteUserContact(id)); //delite contact
+    dispatch(deliteUserContact(id));
+    const delitedContact = userList.find(user => user.id === id);
+    toast(`❌ ${delitedContact.name} delited from contacts list`);
   };
 
   const visiblContacts = getVisibleContacts();
@@ -81,11 +60,12 @@ export const App = () => {
         color: '#010101',
       }}
     >
+      <Toaster />
       <h2>Phonebook</h2>
       <FormFild onSubmit={onHandleSubmit} />
       <h4>Contacts</h4>
-      <Filter value={filter} onChange={changeFilter} />
-      {contacts.length > 0 && (
+      <Filter value={userFilter} onChange={changeFilter} />
+      {userList.length > 0 && (
         <Contacts contacts={visiblContacts} onDelite={deliteContact} />
       )}
     </div>
