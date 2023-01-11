@@ -1,4 +1,8 @@
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'Redux/contactsSlice';
+
+import { nanoid } from 'nanoid';
+import toast from 'react-hot-toast';
 
 import { Formik, Field } from 'formik';
 import { Button, Label, StyledForm } from './FormFild.styled.js';
@@ -8,9 +12,29 @@ const initialValues = {
   number: '',
 };
 
-export const FormFild = ({ onSubmit }) => {
+export const FormFild = () => {
+  const userList = useSelector(state => state.contacts.contacts);
+  const dispatch = useDispatch();
+
+  const onHandleSubmit = (e, { resetForm }) => {
+    const contactName = [];
+
+    for (const contact of userList) {
+      contactName.push(contact.name.toLowerCase());
+    }
+
+    if (contactName.includes(e.name.toLowerCase())) {
+      toast(`😱 ${e.name} already in contacts list`);
+      return;
+    }
+    const user = { ...e, id: nanoid() };
+    dispatch(addContact(user));
+    toast(`✅ ${e.name} added`);
+    resetForm();
+  };
+
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik initialValues={initialValues} onSubmit={onHandleSubmit}>
       <StyledForm>
         <Label htmlFor="name">
           Name
@@ -36,8 +60,4 @@ export const FormFild = ({ onSubmit }) => {
       </StyledForm>
     </Formik>
   );
-};
-
-FormFild.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
