@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'Redux/contactsSlice';
+import { addContact } from 'Redux/contactsOperations';
 
-import { nanoid } from 'nanoid';
 import toast from 'react-hot-toast';
 
 import { Formik, Field } from 'formik';
@@ -9,7 +8,7 @@ import { Button, Label, StyledForm } from './FormFild.styled.js';
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export const FormFild = () => {
@@ -27,7 +26,7 @@ export const FormFild = () => {
       toast(`😱 ${e.name} already in contacts list`);
       return;
     }
-    const user = { ...e, id: nanoid() };
+    const user = { ...e };
     dispatch(addContact(user));
     toast(`✅ ${e.name} added`);
     resetForm();
@@ -46,11 +45,11 @@ export const FormFild = () => {
             required
           />
         </Label>
-        <Label htmlFor="number">
+        <Label htmlFor="phone">
           Number
           <Field
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required

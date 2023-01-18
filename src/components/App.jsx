@@ -2,24 +2,32 @@ import { Contacts } from './Contacts/Contacts';
 import { FormFild } from './FormFild/FormFild';
 import { Toaster } from 'react-hot-toast';
 import { Filter } from './Filter/Filter';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchContacts } from 'Redux/contactsOperations';
 
 export const App = () => {
+  const dispatch = useDispatch();
   const userList = useSelector(state => state.contacts.contacts);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <div
       style={{
-        height: '100vh',
+        // height: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 40,
         color: '#010101',
+        padding: 20,
       }}
     >
-      <Toaster />
+      <Toaster position="top-right" reverseOrder={false} />
       <h2>Phonebook</h2>
       <FormFild />
       <h4>Contacts</h4>

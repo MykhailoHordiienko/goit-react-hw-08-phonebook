@@ -1,6 +1,6 @@
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { deliteUserContact } from 'Redux/contactsSlice';
+import { deleteContact } from 'Redux/contactsOperations';
 import toast from 'react-hot-toast';
 
 export const Contacts = () => {
@@ -9,7 +9,7 @@ export const Contacts = () => {
   const dispatch = useDispatch();
 
   const deliteContact = id => {
-    dispatch(deliteUserContact(id));
+    dispatch(deleteContact(id));
     const delitedContact = userList.find(user => user.id === id);
     toast(`❌ ${delitedContact.name} delited from contacts list`);
   };
@@ -25,13 +25,13 @@ export const Contacts = () => {
 
   return (
     <ul>
-      {visiblContacts.map(({ id, name, number }) => {
+      {visiblContacts.map(({ id, name, phone }) => {
         return (
           <ContactItem
             key={id}
             id={id}
             name={name}
-            number={number}
+            number={phone}
             onDelite={deliteContact}
           />
         );
