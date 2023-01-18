@@ -1,6 +1,6 @@
 import { Contacts } from './Contacts/Contacts';
 import { FormFild } from './FormFild/FormFild';
-import { Toaster } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 import { Filter } from './Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -11,7 +11,10 @@ export const App = () => {
   const userList = useSelector(state => state.contacts.contacts);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchContacts())
+      .unwrap()
+      .then()
+      .catch(e => toast.error(e));
   }, [dispatch]);
 
   return (

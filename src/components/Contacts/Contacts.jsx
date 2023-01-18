@@ -9,9 +9,11 @@ export const Contacts = () => {
   const dispatch = useDispatch();
 
   const deliteContact = id => {
-    dispatch(deleteContact(id));
     const delitedContact = userList.find(user => user.id === id);
-    toast(`❌ ${delitedContact.name} delited from contacts list`);
+    dispatch(deleteContact(id))
+      .unwrap()
+      .then(() => toast(`❌ ${delitedContact.name} delited from contacts list`))
+      .catch(e => toast.error(e));
   };
 
   const getVisibleContacts = () => {

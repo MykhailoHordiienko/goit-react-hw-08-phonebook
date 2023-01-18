@@ -13,6 +13,8 @@ const initialValues = {
 
 export const FormFild = () => {
   const userList = useSelector(state => state.contacts.contacts);
+  const isLoading = useSelector(state => state.contacts.isLoading);
+
   const dispatch = useDispatch();
 
   const onHandleSubmit = (e, { resetForm }) => {
@@ -27,8 +29,11 @@ export const FormFild = () => {
       return;
     }
     const user = { ...e };
-    dispatch(addContact(user));
-    toast(`✅ ${e.name} added`);
+    dispatch(addContact(user))
+      .unwrap()
+      .then(() => toast(`✅ ${e.name} added`))
+      .catch(e => toast.error(e));
+
     resetForm();
   };
 
@@ -55,7 +60,9 @@ export const FormFild = () => {
             required
           />
         </Label>
-        <Button type="submit">Add contact</Button>
+        <Button type="submit" disabled={isLoading}>
+          Add contact
+        </Button>
       </StyledForm>
     </Formik>
   );

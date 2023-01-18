@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './contactsOperations';
 import {
   healperPending,
@@ -15,17 +15,30 @@ export const contactsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
-    [fetchContacts.pending]: healperPending,
-    [fetchContacts.fulfilled]: healperFulfilledFetch,
-    [fetchContacts.rejected]: healperRejected,
+  extraReducers: builder => {
+    builder
 
-    [addContact.pending]: healperPending,
-    [addContact.fulfilled]: healperFulfilledAdd,
-    [addContact.rejected]: healperRejected,
+      .addCase(fetchContacts.fulfilled, healperFulfilledFetch)
 
-    [deleteContact.pending]: healperPending,
-    [deleteContact.fulfilled]: healperFulfilledDelete,
-    [deleteContact.rejected]: healperRejected,
+      .addCase(addContact.fulfilled, healperFulfilledAdd)
+
+      .addCase(deleteContact.fulfilled, healperFulfilledDelete)
+
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.pending,
+          addContact.pending,
+          deleteContact.pending
+        ),
+        healperPending
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchContacts.rejected,
+          addContact.rejected,
+          deleteContact.rejected
+        ),
+        healperRejected
+      );
   },
 });
