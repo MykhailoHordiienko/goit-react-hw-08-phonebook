@@ -11,6 +11,8 @@ export const Navigation = () => {
   return (
     <header>
       <Box
+        position="fixed"
+        width="100%"
         p={[2, 4, 6]}
         display="flex"
         alignItems="center"
@@ -55,7 +57,7 @@ export const Navigation = () => {
               transform: 'scale(1.5)',
             }}
           >
-            Register
+            Signup
           </Button>
           <Button
             as={NavLink}
