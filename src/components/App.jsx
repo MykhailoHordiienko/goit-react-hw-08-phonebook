@@ -1,4 +1,5 @@
 import { ContactsPage } from 'Pages/Contacts/ContactsPage';
+import { HomePage } from 'Pages/HomePage/HomePage';
 import { LoginPage } from 'Pages/Login/LoginPage';
 import { RegisterPage } from 'Pages/Register/RegisterPage';
 import { Toaster } from 'react-hot-toast';
@@ -7,21 +8,11 @@ import { Navigation } from './Navigatoin/Navigation';
 
 export const App = () => {
   return (
-    <div
-    //   style={{
-    //     // height: '100vh',
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     fontSize: 40,
-    //     color: '#010101',
-    //     padding: 20,
-    //   }}
-    >
+    <div>
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<Navigation />}>
+          <Route index element={<HomePage />}></Route>
           <Route path="contacts" element={<ContactsPage />}></Route>
           <Route path="register" element={<RegisterPage />}></Route>
           <Route path="login" element={<LoginPage />}></Route>
