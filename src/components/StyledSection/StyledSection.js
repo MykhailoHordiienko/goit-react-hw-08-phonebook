@@ -13,4 +13,14 @@ export const Section = styled.section`
   background-position: right 96%;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  animation: 0.8s show ease;
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;

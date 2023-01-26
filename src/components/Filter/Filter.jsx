@@ -1,3 +1,4 @@
+import { Heading, Input } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFilter } from 'Redux/filterSlice';
 
@@ -11,8 +12,21 @@ export const Filter = () => {
 
   return (
     <>
-      <p>Find contacts by name</p>
-      <input type="text" value={userFilter} onChange={changeFilter} />
+      <Heading size="md" mt="50px">
+        Find contacts by name
+      </Heading>
+      <Input
+        _active={{
+          transform: 'scale(1.5)',
+        }}
+        mt="20px"
+        width={['100%', '50%', '25%']}
+        placeholder="Enter Phone-Number 📲"
+        variant="filled"
+        type="text"
+        value={userFilter}
+        onChange={changeFilter}
+      />
     </>
   );
 };

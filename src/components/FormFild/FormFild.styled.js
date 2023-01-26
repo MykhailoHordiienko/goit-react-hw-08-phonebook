@@ -6,5 +6,5 @@ export const StyledForm = styled(Form)`
   flex-direction: column;
   align-items: center;
   gap: 25px;
-  padding-top: 40px;
+  padding-top: 58px;
 `;

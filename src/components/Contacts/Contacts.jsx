@@ -2,6 +2,7 @@ import { ContactItem } from 'components/ContactItem/ContactItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'Redux/contactsOperations';
 import toast from 'react-hot-toast';
+import { List } from '@chakra-ui/react';
 
 export const Contacts = () => {
   const userList = useSelector(state => state.contacts.contacts);
@@ -26,7 +27,7 @@ export const Contacts = () => {
   const visiblContacts = getVisibleContacts();
 
   return (
-    <ul>
+    <List spacing={4} mt="20px">
       {visiblContacts.map(({ id, name, phone }) => {
         return (
           <ContactItem
@@ -38,6 +39,6 @@ export const Contacts = () => {
           />
         );
       })}
-    </ul>
+    </List>
   );
 };
