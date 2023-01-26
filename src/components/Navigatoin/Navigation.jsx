@@ -4,15 +4,19 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Flex,
 } from '@chakra-ui/react';
+import { Footer } from 'components/Footer/Footer';
 import { NavLink, Outlet } from 'react-router-dom';
 
 export const Navigation = () => {
   return (
-    <header>
+    <Flex flexDirection="column" ml="auto" mr="auto" maxW="1400px">
       <Box
+        as="heder"
         position="fixed"
         width="100%"
+        maxWidth="1400px"
         p={[2, 4, 6]}
         display="flex"
         alignItems="center"
@@ -76,7 +80,10 @@ export const Navigation = () => {
           </Button>
         </Box>
       </Box>
+
       <Outlet />
-    </header>
+
+      <Footer />
+    </Flex>
   );
 };

@@ -8,7 +8,7 @@ import { Navigation } from './Navigatoin/Navigation';
 
 export const App = () => {
   return (
-    <div>
+    <>
       <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<Navigation />}>
@@ -18,6 +18,6 @@ export const App = () => {
           <Route path="login" element={<LoginPage />}></Route>
         </Route>
       </Routes>
-    </div>
+    </>
   );
 };
