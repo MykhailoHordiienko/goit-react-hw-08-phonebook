@@ -1,5 +1,10 @@
-import React from 'react';
+import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { Section } from 'components/StyledSection/StyledSection';
 
 export const RegisterPage = () => {
-  return <div>RegisterPage</div>;
+  return (
+    <Section>
+      <RegisterForm />
+    </Section>
+  );
 };

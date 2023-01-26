@@ -13,7 +13,7 @@ export const Navigation = () => {
   return (
     <Flex flexDirection="column" ml="auto" mr="auto" maxW="1400px">
       <Box
-        as="heder"
+        as="header"
         position="fixed"
         width="100%"
         maxWidth="1400px"

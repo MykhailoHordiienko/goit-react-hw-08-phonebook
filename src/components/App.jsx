@@ -9,7 +9,7 @@ import { Navigation } from './Navigatoin/Navigation';
 export const App = () => {
   return (
     <>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<HomePage />}></Route>

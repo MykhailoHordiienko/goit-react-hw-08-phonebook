@@ -7,7 +7,7 @@ export const Section = styled.section`
   flex-direction: column;
   height: 95vh;
   padding: 40px;
-  padding-top: 89px;
+  padding-top: 99px;
   background-image: url(${wallPagePhoto}), url(${homePagePhoto});
   background-size: 50%, 20%;
   background-position: right 96%;

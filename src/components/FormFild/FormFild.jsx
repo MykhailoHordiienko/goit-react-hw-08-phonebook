@@ -46,7 +46,7 @@ export const FormFild = () => {
           _active={{
             transform: 'scale(1.5)',
           }}
-          width={['100%', '50%', '25%']}
+          width={['100%', '70%', '40%']}
           placeholder="Enter Name 🙋🏼‍♀️"
           variant="filled"
           type="text"
@@ -61,7 +61,7 @@ export const FormFild = () => {
           _active={{
             transform: 'scale(1.5)',
           }}
-          width={['100%', '50%', '25%']}
+          width={['100%', '70%', '40%']}
           placeholder="Enter Phone-Number 📲"
           variant="filled"
           type="tel"

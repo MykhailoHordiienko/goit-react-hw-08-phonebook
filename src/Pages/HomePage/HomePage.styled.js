@@ -8,7 +8,7 @@ export const HomeSection = styled.section`
   padding-top: 89px;
   background-image: url(${homePagePhoto});
   background-size: 50%;
-  background-position: right 96%;
+  background-position: 85% 96%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   animation: 0.8s show ease;
