@@ -5,6 +5,7 @@ import { Filter } from '../../components/Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'Redux/contactsOperations';
+import { Section } from 'components/StyledSection/StyledSection';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -18,12 +19,11 @@ export const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h2>Phonebook</h2>
+    <Section>
       <FormFild />
       <h4>Contacts</h4>
       <Filter />
       {userList.length > 0 && <Contacts />}
-    </div>
+    </Section>
   );
 };

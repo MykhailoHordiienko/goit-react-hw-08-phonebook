@@ -4,7 +4,8 @@ import { addContact } from 'Redux/contactsOperations';
 import toast from 'react-hot-toast';
 
 import { Formik, Field } from 'formik';
-import { Button, Label, StyledForm } from './FormFild.styled.js';
+import { StyledForm } from './FormFild.styled.js';
+import { Button, Input } from '@chakra-ui/react';
 
 const initialValues = {
   name: '',
@@ -40,27 +41,44 @@ export const FormFild = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onHandleSubmit}>
       <StyledForm>
-        <Label htmlFor="name">
-          Name
-          <Field
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </Label>
-        <Label htmlFor="phone">
-          Number
-          <Field
-            type="tel"
-            name="phone"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </Label>
-        <Button type="submit" disabled={isLoading}>
+        <Input
+          as={Field}
+          _active={{
+            transform: 'scale(1.5)',
+          }}
+          width={['100%', '50%', '25%']}
+          placeholder="Enter Name 🙋🏼‍♀️"
+          variant="filled"
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+        />
+
+        <Input
+          as={Field}
+          _active={{
+            transform: 'scale(1.5)',
+          }}
+          width={['100%', '50%', '25%']}
+          placeholder="Enter Phone-Number 📲"
+          variant="filled"
+          type="tel"
+          name="phone"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+        />
+
+        <Button
+          colorScheme="telegram"
+          _active={{
+            transform: 'scale(1.5)',
+          }}
+          type="submit"
+          disabled={isLoading}
+        >
           Add contact
         </Button>
       </StyledForm>

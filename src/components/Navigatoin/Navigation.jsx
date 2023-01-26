@@ -17,7 +17,7 @@ export const Navigation = () => {
         position="fixed"
         width="100%"
         maxWidth="1400px"
-        p={[2, 4, 6]}
+        p={[4, 6, 8]}
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -29,6 +29,9 @@ export const Navigation = () => {
             <BreadcrumbLink
               as={NavLink}
               to="/"
+              _active={{
+                transform: 'scale(1.5)',
+              }}
               _activeLink={{ color: 'orange' }}
               size="xl"
             >
@@ -39,6 +42,9 @@ export const Navigation = () => {
             <BreadcrumbLink
               as={NavLink}
               to="/contacts"
+              _active={{
+                transform: 'scale(1.5)',
+              }}
               _activeLink={{ color: 'orange' }}
               size="xl"
             >
