@@ -5,9 +5,10 @@ import homePagePhoto from '../../Photo/homePage.png';
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
-  height: 95vh;
+  min-height: calc(100vh - 130px);
+
   padding: 40px;
-  padding-top: 99px;
+
   background-image: url(${wallPagePhoto}), url(${homePagePhoto});
   background-size: 50%, 20%;
   background-position: right 96%;

@@ -14,7 +14,6 @@ export const Navigation = () => {
     <Flex flexDirection="column" ml="auto" mr="auto" maxW="1400px">
       <Box
         as="header"
-        position="fixed"
         width="100%"
         maxWidth="1400px"
         p={[4, 6, 8]}

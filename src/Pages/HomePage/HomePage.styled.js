@@ -3,9 +3,9 @@ import homePagePhoto from '../../Photo/homePage.png';
 
 export const HomeSection = styled.section`
   display: flex;
-  height: 95vh;
+  min-height: calc(100vh - 130px);
   padding: 40px;
-  padding-top: 89px;
+  padding-top: 40px;
   background-image: url(${homePagePhoto});
   background-size: 50%;
   background-position: 85% 96%;
