@@ -1,10 +1,10 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { Section } from 'components/StyledSection/StyledSection';
 
-export const RegisterPage = () => {
+export default function RegisterPage() {
   return (
     <Section>
       <RegisterForm />
     </Section>
   );
-};
+}

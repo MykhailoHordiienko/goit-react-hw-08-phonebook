@@ -1,7 +1,7 @@
 import { Heading } from '@chakra-ui/react';
 import { HomeSection } from './HomePage.styled';
 
-export const HomePage = () => {
+export default function HomePage() {
   return (
     <HomeSection>
       <Heading mt={'auto'} mb={'auto'}>
@@ -12,4 +12,4 @@ export const HomePage = () => {
       </Heading>
     </HomeSection>
   );
-};
+}

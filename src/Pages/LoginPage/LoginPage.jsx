@@ -1,10 +1,10 @@
 import { Section } from 'components/StyledSection/StyledSection';
-import { LoginForm } from 'LoginForm/LoginForm';
+import { LoginForm } from 'components/LoginForm/LoginForm';
 
-export const LoginPage = () => {
+export default function LoginPage() {
   return (
     <Section>
       <LoginForm />
     </Section>
   );
-};
+}

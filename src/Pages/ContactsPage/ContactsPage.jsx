@@ -8,7 +8,7 @@ import { fetchContacts } from 'Redux/contactsOperations';
 import { Section } from 'components/StyledSection/StyledSection';
 import { Heading } from '@chakra-ui/react';
 
-export const ContactsPage = () => {
+export default function ContactsPage() {
   const dispatch = useDispatch();
   const userList = useSelector(state => state.contacts.contacts);
 
@@ -29,4 +29,4 @@ export const ContactsPage = () => {
       {userList.length > 0 && <Contacts />}
     </Section>
   );
-};
+}
