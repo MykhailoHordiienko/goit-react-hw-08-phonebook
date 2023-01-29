@@ -5,9 +5,9 @@ const setToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-const clearToken = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
+// const clearToken = () => {
+//   axios.defaults.headers.common.Authorization = '';
+// };
 
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -15,6 +15,26 @@ export const registerUser = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/signup', datareg);
       setToken(data.token);
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setToken(persistedToken);
+      const { data } = await axios.get('/users/current');
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
