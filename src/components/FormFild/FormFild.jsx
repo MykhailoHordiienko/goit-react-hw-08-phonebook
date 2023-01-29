@@ -9,7 +9,7 @@ import { Button, Input } from '@chakra-ui/react';
 
 const initialValues = {
   name: '',
-  phone: '',
+  number: '',
 };
 
 export const FormFild = () => {
@@ -65,7 +65,7 @@ export const FormFild = () => {
           placeholder="Enter Phone-Number 📲"
           variant="filled"
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required

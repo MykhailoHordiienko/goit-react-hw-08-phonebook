@@ -28,13 +28,13 @@ export const Contacts = () => {
 
   return (
     <List spacing={4} mt="20px">
-      {visiblContacts.map(({ id, name, phone }) => {
+      {visiblContacts.map(({ id, name, number }) => {
         return (
           <ContactItem
             key={id}
             id={id}
             name={name}
-            number={phone}
+            number={number}
             onDelite={deliteContact}
           />
         );
