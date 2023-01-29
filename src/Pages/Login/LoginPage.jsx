@@ -1,5 +1,10 @@
-import React from 'react';
+import { Section } from 'components/StyledSection/StyledSection';
+import { LoginForm } from 'LoginForm/LoginForm';
 
 export const LoginPage = () => {
-  return <div>LoginPage</div>;
+  return (
+    <Section>
+      <LoginForm />
+    </Section>
+  );
 };

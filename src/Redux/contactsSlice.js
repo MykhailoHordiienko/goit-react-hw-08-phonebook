@@ -6,7 +6,7 @@ import {
   healperFulfilledFetch,
   healperFulfilledAdd,
   healperFulfilledDelete,
-} from './healpers';
+} from './healpersContacts';
 
 export const contactsSlice = createSlice({
   name: 'contacts',
