@@ -1,6 +1,8 @@
 import { Formik, Field } from 'formik';
 import { Button, Input } from '@chakra-ui/react';
 import { StyledForm } from 'components/FormFild/FormFild.styled';
+import { useDispatch } from 'react-redux';
+import { logInUser } from 'Redux/authOperations';
 
 const initialValues = {
   email: '',
@@ -8,8 +10,10 @@ const initialValues = {
 };
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const onHandleSubmit = (e, { resetForm }) => {
-    console.log(e);
+    const { email, password } = e;
+    dispatch(logInUser({ email, password }));
     resetForm();
   };
 

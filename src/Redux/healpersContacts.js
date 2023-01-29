@@ -26,7 +26,3 @@ export const healperFulfilledDelete = (state, action) => {
     contact => contact.id !== action.payload.id
   );
 };
-
-// export const healperFilter = (state, action) => {
-//   state.filterValue = action.payload;
-// };

@@ -22,6 +22,19 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const logInUser = createAsyncThunk(
+  'auth/login',
+  async (userData, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/login', userData);
+      setToken(data.token);
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const logOutUser = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
