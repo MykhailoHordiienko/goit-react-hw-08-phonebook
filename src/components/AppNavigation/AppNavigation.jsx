@@ -8,17 +8,19 @@ export const AppNavigation = () => {
   return (
     <Breadcrumb fontSize="2xl" as="b">
       <BreadcrumbItem>
-        <BreadcrumbLink
-          as={NavLink}
-          to="/"
-          _active={{
-            transform: 'scale(1.5)',
-          }}
-          _activeLink={{ color: 'orange' }}
-          size="xl"
-        >
-          Home
-        </BreadcrumbLink>
+        {!isLoggedIn && (
+          <BreadcrumbLink
+            as={NavLink}
+            to="/"
+            _active={{
+              transform: 'scale(1.5)',
+            }}
+            _activeLink={{ color: 'orange' }}
+            size="xl"
+          >
+            Home
+          </BreadcrumbLink>
+        )}
       </BreadcrumbItem>
       {isLoggedIn && (
         <BreadcrumbItem>

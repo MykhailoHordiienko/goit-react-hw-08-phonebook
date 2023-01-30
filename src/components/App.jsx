@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { refreshUser } from 'Redux/authOperations';
 import { Navigation } from './Navigation';
+import { PrivateRoute } from './PrivateRout';
+import { RestrictedRoute } from './RestrictedRout';
 
 const HomePage = lazy(() => import('Pages/HomePage/HomePage'));
 const ContactsPage = lazy(() => import('Pages/ContactsPage/ContactsPage'));
@@ -24,10 +26,39 @@ export const App = () => {
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<Navigation />}>
-          <Route index element={<HomePage />}></Route>
-          <Route path="contacts" element={<ContactsPage />}></Route>
-          <Route path="register" element={<RegisterPage />}></Route>
-          <Route path="login" element={<LoginPage />}></Route>
+          <Route
+            index
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<HomePage />}
+              />
+            }
+          ></Route>
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          ></Route>
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          ></Route>
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
+            }
+          ></Route>
         </Route>
       </Routes>
     </>
