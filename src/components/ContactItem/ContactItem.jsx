@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { ListItem, ListIcon, Icon } from '@chakra-ui/react';
 import { CheckCircleIcon, DeleteIcon } from '@chakra-ui/icons';
-
-// import { Button } from './ContactItem.styled';
+import { selectIsLoadingContacts } from 'Redux/selectors';
 
 export const ContactItem = ({ id, name, number, onDelite }) => {
-  const isLoading = useSelector(state => state.contacts.isLoading);
+  const isLoading = useSelector(selectIsLoadingContacts);
 
   return (
     <ListItem>

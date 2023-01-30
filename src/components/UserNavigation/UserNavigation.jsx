@@ -2,11 +2,12 @@ import { logOutUser } from 'Redux/authOperations';
 import { NavLink } from 'react-router-dom';
 import { Box, Button } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn, selectUser } from 'Redux/selectors';
 
 export const UserNavigation = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const user = useSelector(state => state.auth.user.name);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
 
   return (
     <Box display="flex" gap={4}>

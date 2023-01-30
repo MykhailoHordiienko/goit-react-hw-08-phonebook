@@ -1,9 +1,10 @@
 import { Heading, Input } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFilter } from 'Redux/filterSlice';
+import { selectUserFilter } from 'Redux/selectors';
 
 export const Filter = () => {
-  const userFilter = useSelector(state => state.filter);
+  const userFilter = useSelector(selectUserFilter);
   const dispatch = useDispatch();
 
   const changeFilter = e => {
@@ -21,7 +22,7 @@ export const Filter = () => {
         }}
         mt="20px"
         width={['100%', '50%', '25%']}
-        placeholder="Enter Phone-Number 📲"
+        placeholder="Enter Name 💁🏼‍♀️"
         variant="filled"
         type="text"
         value={userFilter}

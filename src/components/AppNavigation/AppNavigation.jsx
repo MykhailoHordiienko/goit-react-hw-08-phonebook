@@ -2,9 +2,10 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
 import { NavLink } from 'react-router-dom';
+import { selectIsLoggedIn } from 'Redux/selectors';
 
 export const AppNavigation = () => {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <Breadcrumb fontSize="2xl" as="b">
       <BreadcrumbItem>

@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { Formik, Field } from 'formik';
 import { StyledForm } from './FormFild.styled.js';
 import { Button, Input } from '@chakra-ui/react';
+import { selectIsLoadingContacts, selectUserList } from 'Redux/selectors.js';
 
 const initialValues = {
   name: '',
@@ -13,8 +14,8 @@ const initialValues = {
 };
 
 export const FormFild = () => {
-  const userList = useSelector(state => state.contacts.contacts);
-  const isLoading = useSelector(state => state.contacts.isLoading);
+  const userList = useSelector(selectUserList);
+  const isLoading = useSelector(selectIsLoadingContacts);
 
   const dispatch = useDispatch();
 

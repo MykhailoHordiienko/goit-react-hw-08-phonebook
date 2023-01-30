@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'Redux/contactsOperations';
 import toast from 'react-hot-toast';
 import { List } from '@chakra-ui/react';
+import { selectUserFilter, selectUserList } from 'Redux/selectors';
 
 export const Contacts = () => {
-  const userList = useSelector(state => state.contacts.contacts);
-  const userFilter = useSelector(state => state.filter);
+  const userList = useSelector(selectUserList);
+  const userFilter = useSelector(selectUserFilter);
   const dispatch = useDispatch();
 
   const deliteContact = id => {
