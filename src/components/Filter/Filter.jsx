@@ -17,9 +17,6 @@ export const Filter = () => {
         Find contacts by name
       </Heading>
       <Input
-        _active={{
-          transform: 'scale(1.5)',
-        }}
         mt="20px"
         width={['100%', '50%', '25%']}
         placeholder="Enter Name 💁🏼‍♀️"

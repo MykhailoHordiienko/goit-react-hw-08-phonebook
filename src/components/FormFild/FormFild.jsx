@@ -44,9 +44,6 @@ export const FormFild = () => {
       <StyledForm>
         <Input
           as={Field}
-          _active={{
-            transform: 'scale(1.5)',
-          }}
           width={['100%', '70%', '40%']}
           placeholder="Enter Name 🙋🏼‍♀️"
           variant="filled"
@@ -59,9 +56,6 @@ export const FormFild = () => {
 
         <Input
           as={Field}
-          _active={{
-            transform: 'scale(1.5)',
-          }}
           width={['100%', '70%', '40%']}
           placeholder="Enter Phone-Number 📲"
           variant="filled"

@@ -22,9 +22,6 @@ export const LoginForm = () => {
       <StyledForm>
         <Input
           as={Field}
-          _active={{
-            transform: 'scale(1.5)',
-          }}
           width={['100%', '70%', '40%']}
           placeholder="Enter Email 📧"
           variant="filled"
@@ -35,9 +32,6 @@ export const LoginForm = () => {
 
         <Input
           as={Field}
-          _active={{
-            transform: 'scale(1.5)',
-          }}
           width={['100%', '70%', '40%']}
           placeholder="Enter Password 🛂"
           variant="filled"

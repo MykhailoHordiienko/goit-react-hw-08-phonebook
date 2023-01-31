@@ -30,9 +30,6 @@ export const RegisterForm = () => {
       <StyledForm>
         <Input
           as={Field}
-          _active={{
-            transform: 'scale(1.5)',
-          }}
           width={['100%', '70%', '40%']}
           placeholder="Enter Name 🙋🏼‍♀️"
           variant="filled"
@@ -45,9 +42,6 @@ export const RegisterForm = () => {
 
         <Input
           as={Field}
-          _active={{
-            transform: 'scale(1.5)',
-          }}
           width={['100%', '70%', '40%']}
           placeholder="Enter Email 📧"
           variant="filled"
@@ -58,9 +52,6 @@ export const RegisterForm = () => {
 
         <Input
           as={Field}
-          _active={{
-            transform: 'scale(1.5)',
-          }}
           width={['100%', '70%', '40%']}
           placeholder="Enter Password 🛂"
           variant="filled"
@@ -71,9 +62,6 @@ export const RegisterForm = () => {
 
         <Input
           as={Field}
-          _active={{
-            transform: 'scale(1.5)',
-          }}
           width={['100%', '70%', '40%']}
           placeholder="Confirm Password 👮🏻‍♀️"
           variant="filled"
